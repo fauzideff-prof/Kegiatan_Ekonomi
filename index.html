@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Pembelajaran Interaktif IPS: Kegiatan Ekonomi</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#1E3A8A',
+                            lightblue: '#3B82F6',
+                            green: '#10B981',
+                            orange: '#F97316',
+                            yellow: '#F59E0B',
+                            bg: '#F3F4F6'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Poppins', sans-serif; background-color: #f8fafc; }
+        .glass-card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 4px; }
+        .animate-bounce-short { animation: bounce 1s infinite alternate; }
+        @keyframes bounce { 0% { transform: translateY(0); } 100% { transform: translateY(-8px); } }
+    </style>
+</head>
+<body class="text-gray-800 bg-slate-50 flex flex-col min-h-screen">
+
+    <!-- HEADER / NAVIGATION BAR -->
+    <header class="bg-gradient-to-r from-blue-900 via-blue-800 to-indigo-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-3 cursor-pointer" onclick="navigateTo('beranda')">
+                <div class="bg-orange-500 p-2.5 rounded-xl shadow-md text-white font-bold">
+                    <i class="fa-solid me-1 fa-store text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg leading-tight text-white tracking-wide">MEDIA INTERAKTIF IPS</h1>
+                    <p class="text-xs text-blue-200">Kelas VII - Kegiatan Ekonomi</p>
+                </div>
+            </div>
+
+            <!-- Profile Info & Mobile Menu Button -->
+            <div class="flex items-center gap-4">
+                <div class="hidden md:flex items-center gap-2 bg-blue-950/60 px-3 py-1.5 rounded-full border border-blue-700/50">
+                    <i class="fa-solid fa-user-circle text-orange-400 text-xl"></i>
+                    <span id="header-user-name" class="text-xs font-medium text-white">Siswa</span>
+                    <span id="header-user-score" class="text-xs bg-orange-500 text-white px-2 py-0.5 rounded-full font-bold ml-1">0 Pts</span>
+                </div>
+
+                <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="md:hidden text-white text-2xl focus:outline-none">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- NAVIGATION MENU (DESKTOP) -->
+        <nav class="hidden md:block bg-blue-950/40 border-t border-blue-800/50">
+            <div class="max-w-7xl mx-auto px-4 flex justify-between items-center overflow-x-auto text-xs py-1">
+                <button onclick="navigateTo('beranda')" class="nav-btn py-2 px-3 hover:text-orange-300 transition flex items-center gap-1 font-medium"><i class="fa-solid fa-house"></i> Beranda</button>
+                <button onclick="navigateTo('tujuan')" class="nav-btn py-2 px-3 hover:text-orange-300 transition flex items-center gap-1 font-medium"><i class="fa-solid fa-bullseye"></i> Tujuan</button>
+                <button onclick="navigateTo('apersepsi')" class="nav-btn py-2 px-3 hover:text-orange-300 transition flex items-center gap-1 font-medium"><i class="fa-solid fa-book-open"></i> Apersepsi</button>
+                <button onclick="navigateTo('materi')" class="nav-btn py-2 px-3 hover:text-orange-300 transition flex items-center gap-1 font-medium"><i class="fa-solid fa-graduation-cap"></i> Modul Materi</button>
+                <button onclick="navigateTo('aktivitas')" class="nav-btn py-2 px-3 hover:text-orange-300 transition flex items-center gap-1 font-medium"><i class="fa-solid fa-puzzle-piece"></i> Aktivitas</button>
+                <button onclick="navigateTo('game')" class="nav-btn py-2 px-3 hover:text-orange-300 transition flex items-center gap-1 font-medium text-yellow-300 font-semibold"><i class="fa-solid fa-gamepad"></i> Game Edukasi</button>
+                <button onclick="navigateTo('latihan')" class="nav-btn py-2 px-3 hover:text-orange-300 transition flex items-center gap-1 font-medium"><i class="fa-solid fa-pen-to-square"></i> Latihan</button>
+                <button onclick="navigateTo('evaluasi')" class="nav-btn py-2 px-3 hover:text-orange-300 transition flex items-center gap-1 font-medium"><i class="fa-solid fa-clipboard-check"></i> Evaluasi</button>
+                <button onclick="navigateTo('refleksi')" class="nav-btn py-2 px-3 hover:text-orange-300 transition flex items-center gap-1 font-medium"><i class="fa-solid fa-heart"></i> Refleksi</button>
+                <button onclick="navigateTo('guru')" class="nav-btn py-2 px-3 bg-orange-600 hover:bg-orange-500 rounded-md text-white font-bold transition flex items-center gap-1"><i class="fa-solid fa-user-tie"></i> Panel Guru</button>
+            </div>
+        </nav>
+
+        <!-- NAVIGATION MENU (MOBILE DROPDOWN) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-blue-900 border-t border-blue-700 px-4 py-3 space-y-2 text-sm">
+            <button onclick="navigateTo('beranda')" class="block w-full text-left py-1.5"><i class="fa-solid fa-house w-6"></i> Beranda</button>
+            <button onclick="navigateTo('tujuan')" class="block w-full text-left py-1.5"><i class="fa-solid fa-bullseye w-6"></i> Tujuan Pembelajaran</button>
+            <button onclick="navigateTo('apersepsi')" class="block w-full text-left py-1.5"><i class="fa-solid fa-book-open w-6"></i> Apersepsi</button>
+            <button onclick="navigateTo('materi')" class="block w-full text-left py-1.5"><i class="fa-solid fa-graduation-cap w-6"></i> Modul Materi</button>
+            <button onclick="navigateTo('aktivitas')" class="block w-full text-left py-1.5"><i class="fa-solid fa-puzzle-piece w-6"></i> Aktivitas Interaktif</button>
+            <button onclick="navigateTo('game')" class="block w-full text-left py-1.5 text-yellow-300 font-bold"><i class="fa-solid fa-gamepad w-6"></i> Game Edukasi</button>
+            <button onclick="navigateTo('latihan')" class="block w-full text-left py-1.5"><i class="fa-solid fa-pen-to-square w-6"></i> Latihan Soal</button>
+            <button onclick="navigateTo('evaluasi')" class="block w-full text-left py-1.5"><i class="fa-solid fa-clipboard-check w-6"></i> Evaluasi Akhir</button>
+            <button onclick="navigateTo('refleksi')" class="block w-full text-left py-1.5"><i class="fa-solid fa-heart w-6"></i> Refleksi</button>
+            <button onclick="navigateTo('guru')" class="block w-full text-left py-1.5 text-orange-300 font-bold"><i class="fa-solid fa-user-tie w-6"></i> Panel Guru</button>
+        </div>
+    </header>
+
+    <!-- PROGRES BAR -->
+    <div class="w-full bg-slate-200 h-2">
+        <div id="main-progress-bar" class="bg-gradient-to-r from-green-500 to-emerald-400 h-2 transition-all duration-500" style="width: 10%;"></div>
+    </div>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-grow max-w-7xl w-full mx-auto p-4 md:p-6">
+
+        <!-- 1. BERANDA / LANDING PAGE -->
+        <section id="sec-beranda" class="content-section space-y-6">
+            <div class="bg-gradient-to-br from-blue-900 via-indigo-900 to-blue-800 text-white rounded-2xl p-6 md:p-10 shadow-xl relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 opacity-10 text-white pointer-events-none">
+                    <i class="fa-solid fa-chart-line text-[250px]"></i>
+                </div>
+                <div class="max-w-2xl space-y-4 relative z-10">
+                    <span class="bg-orange-500 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Kurikulum Merdeka - SMP Kelas VII</span>
+                    <h2 class="text-3xl md:text-5xl font-extrabold leading-tight">MEDIA PEMBELAJARAN INTERAKTIF IPS</h2>
+                    <h3 class="text-xl md:text-2xl font-light text-orange-300">Materi Utama: Kegiatan Ekonomi</h3>
+                    <p class="text-slate-200 text-sm md:text-base leading-relaxed">
+                        Selamat datang di media pembelajaran interaktif IPS. Mari pelajari bagaimana manusia memenuhi kebutuhan hidupnya melalui produksi, distribusi, dan konsumsi dengan cara yang seru dan menyenangkan!
+                    </p>
+                    <div class="pt-4 flex flex-wrap gap-3">
+                        <button onclick="startLearning()" class="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-bold px-6 py-3 rounded-xl shadow-lg hover:shadow-orange-500/30 transition-all flex items-center gap-2 transform hover:-translate-y-0.5">
+                            <i class="fa-solid fa-rocket"></i> MULAI BELAJAR
+                        </button>
+                        <button onclick="navigateTo('petunjuk')" class="bg-white/10 hover:bg-white/20 border border-white/30 text-white font-medium px-5 py-3 rounded-xl backdrop-blur-md transition flex items-center gap-2">
+                            <i class="fa-solid fa-circle-info"></i> PETUNJUK
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROFIL IDENTITAS DIRI -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+                <h3 class="font-bold text-slate-800 text-lg mb-3 flex items-center gap-2"><i class="fa-solid fa-id-card text-blue-600"></i> Identitas Peserta Didik</h3>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Nama Lengkap:</label>
+                        <input type="text" id="user-name-input" placeholder="Masukkan nama kamu..." class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Kelas:</label>
+                        <input type="text" id="user-class-input" placeholder="Contoh: VII-A" class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+                    </div>
+                    <div class="flex items-end">
+                        <button onclick="saveUserProfile()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg text-sm transition">Simpan Profil</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RINGKASAN MENU FITUR -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div onclick="navigateTo('materi')" class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition cursor-pointer group">
+                    <div class="bg-blue-100 text-blue-600 w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition"><i class="fa-solid fa-book text-blue-600"></i></div>
+                    <h4 class="font-bold text-slate-800 text-sm">8 Modul Materi</h4>
+                    <p class="text-xs text-slate-500 mt-1">Konsep lengkap kegiatan ekonomi</p>
+                </div>
+                <div onclick="navigateTo('aktivitas')" class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition cursor-pointer group">
+                    <div class="bg-green-100 text-green-600 w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition"><i class="fa-solid fa-shapes"></i></div>
+                    <h4 class="font-bold text-slate-800 text-sm">5 Aktivitas</h4>
+                    <p class="text-xs text-slate-500 mt-1">Drag & drop, simulasi pasar, & urutan</p>
+                </div>
+                <div onclick="navigateTo('game')" class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition cursor-pointer group">
+                    <div class="bg-amber-100 text-amber-600 w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition"><i class="fa-solid fa-gamepad"></i></div>
+                    <h4 class="font-bold text-slate-800 text-sm">Game Ekonomi</h4>
+                    <p class="text-xs text-slate-500 mt-1">6 Level Petualangan Nusantara</p>
+                </div>
+                <div onclick="navigateTo('evaluasi')" class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition cursor-pointer group">
+                    <div class="bg-indigo-100 text-indigo-600 w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition"><i class="fa-solid fa-chart-line"></i></div>
+                    <h4 class="font-bold text-slate-800 text-sm">Evaluasi Ujian</h4>
+                    <p class="text-xs text-slate-500 mt-1">20 Soal Pilihan Ganda Berbobot</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. TUJUAN PEMBELAJARAN -->
+        <section id="sec-tujuan" class="content-section hidden space-y-6">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <h2 class="text-2xl font-bold text-slate-800 mb-2 flex items-center gap-2"><i class="fa-solid fa-bullseye text-blue-600"></i> Tujuan Pembelajaran</h2>
+                <p class="text-slate-600 text-sm mb-6">Capaian kompetensi yang diharapkan setelah mempelajari seluruh materi kegiatan ekonomi ini:</p>
+                
+                <div class="grid md:grid-cols-2 gap-4" id="tujuan-cards-container">
+                    <!-- Cards Loaded via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. APERSEPSI -->
+        <section id="sec-apersepsi" class="content-section hidden space-y-6">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <span class="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full uppercase">Pengantar Materi</span>
+                <h2 class="text-2xl font-bold text-slate-800 mt-2 mb-4">Cerita Visual: "Dari Sawah Sampai ke Meja Makan"</h2>
+                
+                <!-- Story Steps -->
+                <div class="grid md:grid-cols-4 gap-4 mb-8">
+                    <div class="border rounded-xl p-4 bg-amber-50 text-center">
+                        <div class="text-4xl mb-2">🌾</div>
+                        <h4 class="font-bold text-sm text-slate-800">1. Produksi Padi</h4>
+                        <p class="text-xs text-slate-600 mt-1">Petani menanam dan memanen padi di sawah, lalu mengolahnya jadi beras.</p>
+                    </div>
+                    <div class="border rounded-xl p-4 bg-blue-50 text-center">
+                        <div class="text-4xl mb-2">🚚</div>
+                        <h4 class="font-bold text-sm text-slate-800">2. Pengangkutan</h4>
+                        <p class="text-xs text-slate-600 mt-1">Sopir truk dan distributor mengangkut beras dari desa ke kota.</p>
+                    </div>
+                    <div class="border rounded-xl p-4 bg-green-50 text-center">
+                        <div class="text-4xl mb-2">🏪</div>
+                        <h4 class="font-bold text-sm text-slate-800">3. Penjualan</h4>
+                        <p class="text-xs text-slate-600 mt-1">Pedagang menjual beras di pasar tradisional dan toko kelontong.</p>
+                    </div>
+                    <div class="border rounded-xl p-4 bg-orange-50 text-center">
+                        <div class="text-4xl mb-2">🍚</div>
+                        <h4 class="font-bold text-sm text-slate-800">4. Konsumsi</h4>
+                        <p class="text-xs text-slate-600 mt-1">Ibu membeli beras, memasaknya, dan menyajikannya di meja makan keluarga.</p>
+                    </div>
+                </div>
+
+                <!-- Interactive Quiz Apersepsi -->
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+                    <h3 class="font-bold text-slate-800 mb-3"><i class="fa-solid fa-circle-question text-orange-500"></i> Pertanyaan Pemantik Interaktif</h3>
+                    <div id="apersepsi-quiz" class="space-y-4">
+                        <!-- Questions injected via JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. MODUL MATERI PEMBELAJARAN -->
+        <section id="sec-materi" class="content-section hidden space-y-6">
+            <!-- Navigation Sub-Modul -->
+            <div class="flex overflow-x-auto gap-2 pb-2 custom-scrollbar">
+                <button onclick="showModule(1)" class="mod-tab-btn bg-blue-600 text-white px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap shadow-sm">Modul 1: Tujuan</button>
+                <button onclick="showModule(2)" class="mod-tab-btn bg-white border text-slate-700 px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap hover:bg-slate-100">Modul 2: Jenis Kegiatan</button>
+                <button onclick="showModule(3)" class="mod-tab-btn bg-white border text-slate-700 px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap hover:bg-slate-100">Modul 3: Hubungan</button>
+                <button onclick="showModule(4)" class="mod-tab-btn bg-white border text-slate-700 px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap hover:bg-slate-100">Modul 4: Faktor-Faktor</button>
+                <button onclick="showModule(5)" class="mod-tab-btn bg-white border text-slate-700 px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap hover:bg-slate-100">Modul 5: Pelaku Ekonomi</button>
+                <button onclick="showModule(6)" class="mod-tab-btn bg-white border text-slate-700 px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap hover:bg-slate-100">Modul 6: Contoh Daerah</button>
+                <button onclick="showModule(7)" class="mod-tab-btn bg-white border text-slate-700 px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap hover:bg-slate-100">Modul 7: Pentingnya</button>
+                <button onclick="showModule(8)" class="mod-tab-btn bg-white border text-slate-700 px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap hover:bg-slate-100">Modul 8: Sikap Positif</button>
+            </div>
+
+            <!-- Modul Content Holder -->
+            <div id="module-content-container" class="bg-white p-6 md:p-8 rounded-2xl border border-slate-200 shadow-sm min-h-[400px]">
+                <!-- Module details loaded dynamically -->
+            </div>
+        </section>
+
+        <!-- 5. AKTIVITAS INTERAKTIF -->
+        <section id="sec-aktivitas" class="content-section hidden space-y-6">
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <h2 class="text-2xl font-bold text-slate-800 mb-2 flex items-center gap-2"><i class="fa-solid fa-puzzle-piece text-green-600"></i> Aktivitas Interaktif</h2>
+                <p class="text-slate-600 text-sm mb-6">Uji pemahamanmu secara langsung melalui berbagai simulasi interaktif di bawah ini.</p>
+
+                <!-- Sub Aktivitas Tabs -->
+                <div class="flex border-b mb-6 gap-4 overflow-x-auto">
+                    <button onclick="switchAktivitas('drag')" id="tab-act-drag" class="pb-2 text-sm font-bold border-b-2 border-blue-600 text-blue-600 whitespace-nowrap">1. Drag & Drop Kategori</button>
+                    <button onclick="switchAktivitas('urut')" id="tab-act-urut" class="pb-2 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-800 whitespace-nowrap">2. Susun Rantai Ekonomi</button>
+                    <button onclick="switchAktivitas('simulasi')" id="tab-act-simulasi" class="pb-2 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-800 whitespace-nowrap">3. Simulasi Transaksi Pasar</button>
+                </div>
+
+                <!-- Aktivitas 1: Drag Drop / Kategori -->
+                <div id="act-container-drag" class="act-box space-y-4">
+                    <h3 class="font-bold text-slate-800">Kelompokkan Kegiatan Ekonomi Berikut!</h3>
+                    <p class="text-xs text-slate-500">Pilih atau klik kartu kegiatan lalu masukkan ke dalam kategori yang tepat (Produksi, Distribusi, atau Konsumsi).</p>
+                    
+                    <div id="drag-items" class="flex flex-wrap gap-2 p-4 bg-slate-50 rounded-xl border border-dashed border-slate-300 min-h-[80px]">
+                        <!-- Dynamic items -->
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-4 pt-4">
+                        <div class="border rounded-xl p-4 bg-blue-50/50 min-h-[160px]" id="drop-produksi">
+                            <h4 class="font-bold text-blue-800 text-center text-sm mb-2 border-b pb-1"><i class="fa-solid fa-industry"></i> PRODUKSI</h4>
+                            <div class="drop-zone space-y-2 min-h-[100px]" data-category="produksi"></div>
+                        </div>
+                        <div class="border rounded-xl p-4 bg-orange-50/50 min-h-[160px]" id="drop-distribusi">
+                            <h4 class="font-bold text-orange-800 text-center text-sm mb-2 border-b pb-1"><i class="fa-solid fa-truck"></i> DISTRIBUSI</h4>
+                            <div class="drop-zone space-y-2 min-h-[100px]" data-category="distribusi"></div>
+                        </div>
+                        <div class="border rounded-xl p-4 bg-green-50/50 min-h-[160px]" id="drop-konsumsi">
+                            <h4 class="font-bold text-green-800 text-center text-sm mb-2 border-b pb-1"><i class="fa-solid fa-utensils"></i> KONSUMSI</h4>
+                            <div class="drop-zone space-y-2 min-h-[100px]" data-category="konsumsi"></div>
+                        </div>
+                    </div>
+                    <div class="flex justify-end gap-2 pt-4">
+                        <button onclick="resetDragActivity()" class="px-4 py-2 bg-slate-200 text-slate-700 rounded-lg text-xs font-semibold">Reset</button>
+                        <button onclick="checkDragActivity()" class="px-5 py-2 bg-blue-600 text-white rounded-lg text-xs font-semibold">Periksa Jawaban</button>
+                    </div>
+                </div>
+
+                <!-- Aktivitas 2: Susun Urutan -->
+                <div id="act-container-urut" class="act-box hidden space-y-4">
+                    <h3 class="font-bold text-slate-800">Susun Tahapan Ekonomi Kerajinan Mebel Kayu</h3>
+                    <p class="text-xs text-slate-500">Urutkan langkah berikut dari 1 (Awal Produksi) hingga 4 (Konsumsi Akhir).</p>
+                    <div id="urut-list" class="space-y-2 max-w-xl">
+                        <!-- Loaded JS -->
+                    </div>
+                    <button onclick="checkUrutan()" class="px-5 py-2 bg-blue-600 text-white rounded-lg text-xs font-semibold">Cek Urutan</button>
+                </div>
+
+                <!-- Aktivitas 3: Simulasi Pasar -->
+                <div id="act-container-simulasi" class="act-box hidden space-y-4">
+                    <div class="bg-gradient-to-r from-emerald-600 to-teal-700 text-white p-5 rounded-xl shadow-sm">
+                        <h3 class="font-bold text-lg"><i class="fa-solid fa-shop"></i> Simulasi Kasir Pasar Tradisional</h3>
+                        <p class="text-xs text-emerald-100">Kamu adalah pembeli dengan anggaran Rp 50.000. Belanjailah barang kebutuhan harian dan hitung total kembalianmu!</p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="space-y-3">
+                            <h4 class="font-bold text-sm text-slate-700">Daftar Barang Pasar:</h4>
+                            <div class="space-y-2">
+                                <div class="flex justify-between items-center p-3 border rounded-xl bg-slate-50">
+                                    <div>
+                                        <p class="font-bold text-sm">Beras 1 Kg</p>
+                                        <p class="text-xs text-slate-500">Rp 14.000</p>
+                                    </div>
+                                    <button onclick="addToCart('Beras 1 Kg', 14000)" class="bg-emerald-600 text-white px-3 py-1 rounded-lg text-xs font-semibold hover:bg-emerald-700">+ Beli</button>
+                                </div>
+                                <div class="flex justify-between items-center p-3 border rounded-xl bg-slate-50">
+                                    <div>
+                                        <p class="font-bold text-sm">Minyak Goreng 1L</p>
+                                        <p class="text-xs text-slate-500">Rp 16.000</p>
+                                    </div>
+                                    <button onclick="addToCart('Minyak Goreng 1L', 16000)" class="bg-emerald-600 text-white px-3 py-1 rounded-lg text-xs font-semibold hover:bg-emerald-700">+ Beli</button>
+                                </div>
+                                <div class="flex justify-between items-center p-3 border rounded-xl bg-slate-50">
+                                    <div>
+                                        <p class="font-bold text-sm">Telur Ayam 1/2 Kg</p>
+                                        <p class="text-xs text-slate-500 Rp 15.000">Rp 15.000</p>
+                                    </div>
+                                    <button onclick="addToCart('Telur Ayam', 15000)" class="bg-emerald-600 text-white px-3 py-1 rounded-lg text-xs font-semibold hover:bg-emerald-700">+ Beli</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col justify-between">
+                            <div>
+                                <h4 class="font-bold text-sm text-slate-700 mb-2">Keranjang Belanjaan:</h4>
+                                <ul id="cart-list" class="text-xs space-y-1 mb-4 text-slate-600 border-b pb-2">
+                                    <li class="italic text-slate-400">Keranjang masih kosong.</li>
+                                </ul>
+                            </div>
+                            <div class="space-y-2 border-t pt-2">
+                                <div class="flex justify-between text-xs"><span>Anggaran Diberikan:</span> <span class="font-bold">Rp 50.000</span></div>
+                                <div class="flex justify-between text-xs"><span>Total Belanja:</span> <span id="cart-total" class="font-bold text-blue-600">Rp 0</span></div>
+                                <div class="flex justify-between text-xs"><span>Sisa Kembalian:</span> <span id="cart-change" class="font-bold text-emerald-600">Rp 50.000</span></div>
+                                <button onclick="checkoutCart()" class="w-full mt-2 bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-lg text-xs font-bold">Bayar & Selesai Transaksi</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. GAME EDUKATIF: PETUALANGAN EKONOMI NUSANTARA -->
+        <section id="sec-game" class="content-section hidden space-y-6">
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <div class="flex justify-between items-center mb-4">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-800 flex items-center gap-2"><i class="fa-solid fa-gamepad text-amber-500"></i> Petualangan Ekonomi Nusantara</h2>
+                        <p class="text-xs text-slate-500">Jelajahi pulau-pulau di Indonesia dan selesaikan tantangan ekonomi tiap level!</p>
+                    </div>
+                    <div class="bg-amber-100 text-amber-800 px-4 py-2 rounded-xl text-xs font-bold">
+                        Poin Game: <span id="game-points-display" class="text-base text-amber-600">0</span> Pts
+                    </div>
+                </div>
+
+                <!-- Level Selector -->
+                <div class="grid grid-cols-2 md:grid-cols-6 gap-3 mb-6" id="game-level-selector">
+                    <!-- Levels dynamic -->
+                </div>
+
+                <!-- Active Game Card Area -->
+                <div id="game-play-area" class="bg-gradient-to-br from-slate-900 to-indigo-950 text-white p-6 rounded-2xl min-h-[300px] flex flex-col justify-between">
+                    <!-- Loaded dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. LATIHAN SOAL -->
+        <section id="sec-latihan" class="content-section hidden space-y-6">
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <div class="flex justify-between items-center mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-800 flex items-center gap-2"><i class="fa-solid fa-pen-to-square text-blue-600"></i> Latihan Soal Mandiri</h2>
+                        <p class="text-xs text-slate-500">Latihlah pemahamanmu sebelum menghadapi evaluasi akhir.</p>
+                    </div>
+                    <button onclick="resetLatihan()" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg"><i class="fa-solid fa-rotate-left"></i> Ulangi Latihan</button>
+                </div>
+
+                <div id="latihan-questions-container" class="space-y-6">
+                    <!-- JS Questions -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. EVALUASI AKHIR -->
+        <section id="sec-evaluasi" class="content-section hidden space-y-6">
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <div class="border-b pb-4 mb-6 flex justify-between items-center">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-800 flex items-center gap-2"><i class="fa-solid fa-clipboard-check text-indigo-600"></i> Ujian Evaluasi Akhir</h2>
+                        <p class="text-xs text-slate-500">20 Soal Pilihan Ganda - Skor Akhir Skala 0-100</p>
+                    </div>
+                    <div id="eval-timer" class="bg-indigo-50 border border-indigo-200 text-indigo-800 font-bold px-3 py-1.5 rounded-lg text-xs">
+                        Waktu: <span id="timer-count">30:00</span>
+                    </div>
+                </div>
+
+                <!-- Quiz Progress Navigation -->
+                <div class="mb-6 bg-slate-50 p-4 rounded-xl">
+                    <div class="flex justify-between text-xs font-semibold text-slate-600 mb-2">
+                        <span>Progress Pengerjaan:</span>
+                        <span id="eval-progress-text">0 / 20 Terjawab</span>
+                    </div>
+                    <div class="grid grid-cols-10 gap-2" id="eval-number-grid">
+                        <!-- Number buttons loaded via JS -->
+                    </div>
+                </div>
+
+                <!-- Active Question Box -->
+                <div id="eval-question-box" class="bg-white border rounded-xl p-6 mb-6">
+                    <!-- Dynamic Question -->
+                </div>
+
+                <div class="flex justify-between items-center">
+                    <button id="btn-eval-prev" onclick="navEvalQuestion(-1)" class="px-4 py-2 border text-slate-600 text-xs font-bold rounded-lg hover:bg-slate-50"><i class="fa-solid fa-arrow-left"></i> Sebelumnya</button>
+                    <button id="btn-eval-next" onclick="navEvalQuestion(1)" class="px-4 py-2 bg-blue-600 text-white text-xs font-bold rounded-lg hover:bg-blue-700">Berikutnya <i class="fa-solid fa-arrow-right"></i></button>
+                    <button id="btn-eval-finish" onclick="submitEvaluasi()" class="hidden px-5 py-2 bg-emerald-600 text-white text-xs font-bold rounded-lg hover:bg-emerald-700"><i class="fa-solid fa-paper-plane"></i> Selesaikan Ujian</button>
+                </div>
+
+                <!-- Hasil Evaluasi Modal / Area -->
+                <div id="eval-result-card" class="hidden mt-6 bg-gradient-to-br from-slate-900 to-blue-900 text-white p-6 rounded-2xl">
+                    <div class="text-center space-y-3">
+                        <div class="inline-block p-4 bg-white/10 rounded-full mb-2">
+                            <i class="fa-solid fa-award text-4xl text-yellow-400"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">Hasil Evaluasi Akhir Kamu</h3>
+                        <div class="text-5xl font-extrabold text-orange-400 my-2" id="result-score-val">0</div>
+                        <p id="result-category-badge" class="inline-block bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase">Kategori</p>
+                        <p id="result-feedback-text" class="text-sm text-slate-200 max-w-lg mx-auto">Feedback pesan perbaikan.</p>
+                        
+                        <div class="pt-4 border-t border-white/10 flex justify-center gap-3">
+                            <button onclick="navigateTo('refleksi')" class="px-5 py-2 bg-orange-500 text-white text-xs font-bold rounded-lg hover:bg-orange-600">Lanjut Refleksi</button>
+                            <button onclick="navigateTo('guru')" class="px-5 py-2 bg-white/20 text-white text-xs font-bold rounded-lg hover:bg-white/30">Lihat Rekap Guru</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. REFLEKSI -->
+        <section id="sec-refleksi" class="content-section hidden space-y-6">
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <h2 class="text-2xl font-bold text-slate-800 mb-2 flex items-center gap-2"><i class="fa-solid fa-heart text-red-500"></i> Refleksi Pembelajaran</h2>
+                <p class="text-xs text-slate-500 mb-6">"Apa yang Saya Pelajari Hari Ini?" - Mari ungkapkan pemahaman dan pengalaman belajarmu.</p>
+
+                <div class="space-y-5">
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2"> Tingkat Pemahaman Diri Mengenai Kegiatan Ekonomi:</label>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                            <button type="button" onclick="selectReflectLevel('Sangat Paham')" class="ref-lvl-btn border rounded-xl p-3 text-center hover:border-blue-500 focus:ring-2 focus:ring-blue-500">
+                                <div class="text-2xl mb-1">🌟</div>
+                                <div class="text-xs font-bold text-slate-700">Sangat Paham</div>
+                            </button>
+                            <button type="button" onclick="selectReflectLevel('Paham')" class="ref-lvl-btn border rounded-xl p-3 text-center hover:border-blue-500 focus:ring-2 focus:ring-blue-500">
+                                <div class="text-2xl mb-1">👍</div>
+                                <div class="text-xs font-bold text-slate-700">Paham</div>
+                            </button>
+                            <button type="button" onclick="selectReflectLevel('Cukup Paham')" class="ref-lvl-btn border rounded-xl p-3 text-center hover:border-blue-500 focus:ring-2 focus:ring-blue-500">
+                                <div class="text-2xl mb-1">🤔</div>
+                                <div class="text-xs font-bold text-slate-700">Cukup Paham</div>
+                            </button>
+                            <button type="button" onclick="selectReflectLevel('Perlu Bantuan')" class="ref-lvl-btn border rounded-xl p-3 text-center hover:border-blue-500 focus:ring-2 focus:ring-blue-500">
+                                <div class="text-2xl mb-1">🙋‍♂️</div>
+                                <div class="text-xs font-bold text-slate-700">Perlu Bantuan</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-1">1. Pengetahuan baru apa yang paling berkesan bagi kamu?</label>
+                        <textarea id="ref-q1" rows="2" class="w-full border rounded-xl p-3 text-xs outline-none focus:ring-2 focus:ring-blue-500" placeholder="Tuliskan di sini..."></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-1">2. Sikap bijak apa (seperti hemat, jujur) yang akan kamu terapkan mulai hari ini?</label>
+                        <textarea id="ref-q2" rows="2" class="w-full border rounded-xl p-3 text-xs outline-none focus:ring-2 focus:ring-blue-500" placeholder="Tuliskan di sini..."></textarea>
+                    </div>
+
+                    <button onclick="saveRefleksi()" class="bg-gradient-to-r from-green-600 to-emerald-600 text-white font-bold px-6 py-2.5 rounded-xl text-xs shadow-md hover:from-green-700 hover:to-emerald-700 transition">
+                        <i class="fa-solid fa-floppy-disk"></i> SIMPAN REFLEKSI
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10. PANEL GURU (REKAP NILAI SISWA) & PETUNJUK -->
+        <section id="sec-guru" class="content-section hidden space-y-6">
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <div class="flex justify-between items-center mb-6 border-b pb-4">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-800 flex items-center gap-2"><i class="fa-solid fa-user-tie text-orange-600"></i> Panel Rekapitulasi Guru</h2>
+                        <p class="text-xs text-slate-500">Pantau progres pengerjaan, nilai evaluasi, serta hasil refleksi peserta didik.</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="exportDataSiswa()" class="px-3 py-1.5 bg-green-600 text-white rounded-lg text-xs font-bold hover:bg-green-700"><i class="fa-solid fa-file-excel"></i> Ekspor CSV</button>
+                        <button onclick="resetAllProgress()" class="px-3 py-1.5 bg-red-100 text-red-600 rounded-lg text-xs font-bold hover:bg-red-200"><i class="fa-solid fa-trash"></i> Reset Data</button>
+                    </div>
+                </div>
+
+                <!-- Table Rekapitulasi Data Siswa -->
+                <div class="overflow-x-auto mb-8">
+                    <table class="w-full text-left border-collapse text-xs">
+                        <thead>
+                            <tr class="bg-slate-100 text-slate-700 border-b">
+                                <th class="p-3">Nama Siswa</th>
+                                <th class="p-3">Kelas</th>
+                                <th class="p-3">Level Game</th>
+                                <th class="p-3">Poin Game</th>
+                                <th class="p-3">Nilai Evaluasi</th>
+                                <th class="p-3">Predikat</th>
+                                <th class="p-3">Refleksi Diri</th>
+                            </tr>
+                        </thead>
+                        <tbody id="guru-rekap-table-body" class="divide-y text-slate-600">
+                            <!-- JS loaded -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Panduan Guru & Siswa -->
+                <div class="border-t pt-6 grid md:grid-cols-2 gap-6">
+                    <div class="bg-blue-50 p-4 rounded-xl">
+                        <h4 class="font-bold text-sm text-blue-900 mb-2"><i class="fa-solid fa-chalkboard-user"></i> Petunjuk Penggunaan Guru</h4>
+                        <ul class="text-xs space-y-1.5 text-slate-700 list-disc list-inside">
+                            <li>Buka file <code>media_interaktif_ips_kegiatan_ekonomi.html</code> langsung di peramban web modern (Chrome, Edge, Firefox).</li>
+                            <li>Aplikasi bekerja secara mandiri tanpa memerlukan server eksternal.</li>
+                            <li>Data tersimpan lokal melalui <i>localStorage</i> per-perangkat. Untuk mengumpulkan nilai satu kelas, guru dapat meminta siswa mengklik **"Ekspor CSV"** atau memperlihatkan layar Panel Guru ini.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-orange-50 p-4 rounded-xl">
+                        <h4 class="font-bold text-sm text-orange-900 mb-2"><i class="fa-solid fa-child"></i> Petunjuk Penggunaan Peserta Didik</h4>
+                        <ul class="text-xs space-y-1.5 text-slate-700 list-disc list-inside">
+                            <li>Isi Nama Lengkap dan Kelasmu di Beranda terlebih dahulu.</li>
+                            <li>Pelajari Modul 1 sampai Modul 8 secara runtut.</li>
+                            <li>Mainkan Game "Petualangan Ekonomi" untuk mengumpulkan poin.</li>
+                            <li>Kerjakan Ujian Evaluasi Akhir dengan cermat.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PETUNJUK KHUSUS POPUP MODAL -->
+        <section id="sec-petunjuk" class="content-section hidden space-y-6">
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm max-w-2xl mx-auto">
+                <h2 class="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2"><i class="fa-solid fa-circle-info text-blue-600"></i> Petunjuk Navigasi Aplikasi</h2>
+                <div class="space-y-3 text-xs text-slate-600 leading-relaxed">
+                    <p><strong>1. Beranda:</strong> Tempat mengisi identitas dan melihat gambaran umum media.</p>
+                    <p><strong>2. Modul Materi:</strong> Terbagi menjadi 8 topik lengkap disertai contoh riil masyarakat Indonesia.</p>
+                    <p><strong>3. Aktivitas Interaktif:</strong> Latihan berbasis aksi langsung seperti menyeret kartu dan simulasi kasir.</p>
+                    <p><strong>4. Game Edukatif:</strong> Kumpulkan poin dengan menyelesaikan 6 tantangan pulau Nusantara.</p>
+                    <p><strong>5. Evaluasi & Refleksi:</strong> Pengukuran nilai hasil belajar dan refleksi pengalaman pribadi.</p>
+                </div>
+                <button onclick="navigateTo('beranda')" class="mt-6 px-4 py-2 bg-blue-600 text-white rounded-lg text-xs font-bold">Kembali ke Beranda</button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 text-xs py-4 border-t border-slate-800 mt-8">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-2">
+            <div>
+                <p class="font-semibold text-slate-300">Media Pembelajaran Interaktif IPS Kelas VII - Kegiatan Ekonomi</p>
+                <p class="text-[11px] text-slate-500">Berbasis Kurikulum Merdeka SMP/MTs</p>
+            </div>
+            <div class="text-right text-[11px]">
+                <p>Dikembangkan untuk Pembelajaran Efektif & Fun</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        /* ===================================================
+           STATE MANAGEMENT & LOCAL STORAGE
+        =================================================== */
+        let studentData = {
+            name: "Siswa VII",
+            class: "VII-A",
+            score: 0,
+            evalScore: null,
+            evalCategory: "-",
+            gameLevel: 1,
+            gamePoints: 0,
+            reflectLevel: "-",
+            reflectText: "",
+            progress: 10
+        };
+
+        // Load storage on start
+        window.onload = function() {
+            const saved = localStorage.getItem("ips_kegiatan_ekonomi_data");
+            if(saved) {
+                try {
+                    studentData = JSON.parse(saved);
+                    document.getElementById('user-name-input').value = studentData.name || '';
+                    document.getElementById('user-class-input').value = studentData.class || '';
+                    updateHeaderUI();
+                } catch(e) {}
+            }
+            initTujuanCards();
+            initApersepsiQuiz();
+            initModuleContent();
+            initDragActivity();
+            initUrutanActivity();
+            initGame();
+            initLatihanSoal();
+            initEvaluasi();
+            updateGuruRekap();
+        };
+
+        function saveData() {
+            localStorage.setItem("ips_kegiatan_ekonomi_data", JSON.stringify(studentData));
+            updateHeaderUI();
+            updateGuruRekap();
+        }
+
+        function updateHeaderUI() {
+            document.getElementById('header-user-name').innerText = studentData.name + " (" + studentData.class + ")";
+            document.getElementById('header-user-score').innerText = (studentData.gamePoints + (studentData.evalScore || 0)) + " Pts";
+            document.getElementById('main-progress-bar').style.width = studentData.progress + "%";
+        }
+
+        function saveUserProfile() {
+            const name = document.getElementById('user-name-input').value.trim();
+            const cls = document.getElementById('user-class-input').value.trim();
+            if(name) studentData.name = name;
+            if(cls) studentData.class = cls;
+            saveData();
+            alert("Profil berhasil disimpan!");
+        }
+
+        /* ===================================================
+           NAVIGASI SECTION
+        =================================================== */
+        function navigateTo(secId) {
+            document.querySelectorAll('.content-section').forEach(sec => sec.classList.add('hidden'));
+            const target = document.getElementById('sec-' + secId);
+            if(target) target.classList.remove('hidden');
+            document.getElementById('mobile-menu').classList.add('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+
+        function startLearning() {
+            studentData.progress = Math.max(studentData.progress, 20);
+            saveData();
+            navigateTo('tujuan');
+        }
+
+        /* ===================================================
+           1. TUJUAN PEMBELAJARAN
+        =================================================== */
+        const tujuanList = [
+            { icon: "fa-bullseye", title: "1. Tujuan Kegiatan Ekonomi", desc: "Menjelaskan alasan manusia melakukan kegiatan ekonomi dalam kehidupan sehari-hari." },
+            { icon: "fa-boxes-packing", title: "2. Jenis Kegiatan Ekonomi", desc: "Mengidentifikasi konsep & contoh produksi, distribusi, dan konsumsi." },
+            { icon: "fa-diagram-project", title: "3. Hubungan Antarkegiatan", desc: "Menganalisis keterkaitan timbal balik antara produksi, distribusi, dan konsumsi." },
+            { icon: "fa-gears", title: "4. Faktor Pengaruh", desc: "Menganalisis faktor SDA, SDM, modal, teknologi, dan lokasi geografis." },
+            { icon: "fa-users", title: "5. Pelaku Ekonomi", desc: "Mengidentifikasi peran RTK, RTP, Pemerintah, dan Masyarakat Luar Negeri." },
+            { icon: "fa-map-location-dot", title: "6. Keragaman Nusantara", desc: "Memberikan contoh konkret kegiatan ekonomi dari berbagai wilayah Indonesia." }
+        ];
+
+        function initTujuanCards() {
+            const container = document.getElementById('tujuan-cards-container');
+            container.innerHTML = tujuanList.map((t, idx) => `
+                <div class="p-4 border rounded-xl bg-slate-50 hover:bg-blue-50/50 transition flex items-start gap-3">
+                    <div class="bg-blue-600 text-white p-3 rounded-lg text-lg"><i class="fa-solid ${t.icon}"></i></div>
+                    <div>
+                        <h4 class="font-bold text-sm text-slate-800">${t.title}</h4>
+                        <p class="text-xs text-slate-600 mt-1">${t.desc}</p>
+                        <label class="inline-flex items-center gap-1.5 mt-2 text-xs text-blue-700 font-medium cursor-pointer">
+                            <input type="checkbox" onchange="checkTujuanProgress()" class="rounded border-slate-300 text-blue-600 focus:ring-blue-500"> Saya Paham Indikator Ini
+                        </label>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function checkTujuanProgress() {
+            studentData.progress = Math.min(100, studentData.progress + 5);
+            saveData();
+        }
+
+        /* ===================================================
+           2. APERSEPSI QUIZ
+        =================================================== */
+        function initApersepsiQuiz() {
+            const container = document.getElementById('apersepsi-quiz');
+            container.innerHTML = `
+                <div class="space-y-3">
+                    <p class="text-xs font-bold text-slate-700">Pertanyaan: Apa yang terjadi jika kegiatan distribusi (pengangkutan beras) terhenti total?</p>
+                    <div class="space-y-2">
+                        <button onclick="answerApersepsi(this, false)" class="w-full text-left p-2.5 border rounded-lg text-xs hover:bg-slate-100">A. Petani makin kaya karena beras tidak berkurang.</button>
+                        <button onclick="answerApersepsi(this, true)" class="w-full text-left p-2.5 border rounded-lg text-xs hover:bg-slate-100">B. Makanan di kota langka & harga beras melambung tinggi.</button>
+                    </div>
+                    <div id="apersepsi-feedback" class="hidden p-3 rounded-lg text-xs font-medium"></div>
+                </div>
+            `;
+        }
+
+        function answerApersepsi(btn, isCorrect) {
+            const fb = document.getElementById('apersepsi-feedback');
+            fb.classList.remove('hidden', 'bg-green-100', 'text-green-800', 'bg-red-100', 'text-red-800');
+            if(isCorrect) {
+                fb.classList.add('bg-green-100', 'text-green-800');
+                fb.innerText = "Tepat Sekali! Jika rantai distribusi terputus, barang tidak sampai ke konsumen di kota sehingga terjadi kelangkaan.";
+            } else {
+                fb.classList.add('bg-red-100', 'text-red-800');
+                fb.innerText = "Kurang tepat. Coba pikirkan dampaknya bagi masyarakat pembeli di pasar.";
+            }
+        }
+
+        /* ===================================================
+           3. MODUL MATERI PEMBELAJARAN (8 MODUL)
+        =================================================== */
+        const modulesData = {
+            1: {
+                title: "Modul 1: Tujuan Kegiatan Ekonomi",
+                body: `
+                    <p class="text-sm text-slate-600 mb-4 leading-relaxed"><strong>Kegiatan Ekonomi</strong> adalah seluruh perilaku atau tindakan manusia yang bertujuan untuk memenuhi kebutuhan hidupnya yang beranekaragam dengan memanfaatkan sumber daya yang terbatas.</p>
+                    <h4 class="font-bold text-sm text-slate-800 mb-2">Tujuan Utama Manusia Melakukan Kegiatan Ekonomi:</h4>
+                    <ul class="list-disc list-inside text-xs text-slate-600 space-y-2 mb-4">
+                        <li><strong>Memenuhi Kebutuhan Pokok:</strong> Memperoleh pangan, pakaian, dan tempat tinggal.</li>
+                        <li><strong>Memperoleh Pendapatan:</strong> Mendapatkan uang/gaji dari hasil bekerja atau menjual barang.</li>
+                        <li><strong>Meningkatkan Kesejahteraan:</strong> Mencapai tingkat hidup yang lebih nyaman dan aman.</li>
+                        <li><strong>Memanfaatkan Sumber Daya:</strong> Mengolah potensi alam secara bijaksana demi kelangsungan bersama.</li>
+                    </ul>
+                    <div class="bg-blue-50 p-4 rounded-xl border border-blue-100 text-xs text-blue-900">
+                        <strong>Contoh Riil:</strong> Pak Budi menanam sayuran hidroponik di pekarangan rumah. Selain untuk dimakan sendiri bersama keluarga, sebagian sayur dijual ke tetangga untuk menambah uang saku anak.
+                    </div>
+                `
+            },
+            2: {
+                title: "Modul 2: Jenis-Jenis Kegiatan Ekonomi",
+                body: `
+                    <div class="grid md:grid-cols-3 gap-4 mb-4">
+                        <div class="border p-4 rounded-xl bg-blue-50/40">
+                            <h4 class="font-bold text-blue-800 text-sm mb-1"><i class="fa-solid fa-industry"></i> 1. Produksi</h4>
+                            <p class="text-xs text-slate-600">Kegiatan menghasilkan atau menambah nilai guna barang/jasa. Pelakunya disebut <strong>Produsen</strong>.</p>
+                        </div>
+                        <div class="border p-4 rounded-xl bg-orange-50/40">
+                            <h4 class="font-bold text-orange-800 text-sm mb-1"><i class="fa-solid fa-truck-fast"></i> 2. Distribusi</h4>
+                            <p class="text-xs text-slate-600">Kegiatan menyalurkan barang/jasa dari produsen ke konsumen. Pelakunya disebut <strong>Distributor</strong>.</p>
+                        </div>
+                        <div class="border p-4 rounded-xl bg-green-50/40">
+                            <h4 class="font-bold text-green-800 text-sm mb-1"><i class="fa-solid fa-utensils"></i> 3. Konsumsi</h4>
+                            <p class="text-xs text-slate-600">Kegiatan menggunakan atau menghabiskan nilai guna barang/jasa. Pelakunya disebut <strong>Konsumen</strong>.</p>
+                        </div>
+                    </div>
+                `
+            },
+            3: {
+                title: "Modul 3: Hubungan Antara Produksi, Distribusi, & Konsumsi",
+                body: `
+                    <p class="text-xs text-slate-600 mb-4">Ketiga kegiatan ekonomi membentuk satu kesatuan alur (rantai pasok) yang saling bergantung. Jika salah satu terganggu, seluruh sistem ekonomi terpukul.</p>
+                    <div class="flex flex-col md:flex-row items-center justify-around gap-2 bg-slate-100 p-4 rounded-xl mb-4 text-center text-xs">
+                        <div class="bg-white p-3 rounded-lg shadow-sm font-bold text-blue-700">PRODUKSI<br><span class="text-[10px] text-slate-400">Pabrik Tekstil</span></div>
+                        <i class="fa-solid fa-arrow-right text-slate-400 hidden md:block"></i>
+                        <div class="bg-white p-3 rounded-lg shadow-sm font-bold text-orange-700">DISTRIBUSI<br><span class="text-[10px] text-slate-400">Toko / Kurir Online</span></div>
+                        <i class="fa-solid fa-arrow-right text-slate-400 hidden md:block"></i>
+                        <div class="bg-white p-3 rounded-lg shadow-sm font-bold text-green-700">KONSUMSI<br><span class="text-[10px] text-slate-400">Siswa Memakai Seragam</span></div>
+                    </div>
+                `
+            },
+            4: {
+                title: "Modul 4: Faktor-Faktor yang Memengaruhi Kegiatan Ekonomi",
+                body: `
+                    <ul class="grid md:grid-cols-2 gap-3 text-xs text-slate-700">
+                        <li class="border p-3 rounded-lg"><strong>1. Sumber Daya Alam (SDA):</strong> Ketersediaan bahan baku alam.</li>
+                        <li class="border p-3 rounded-lg"><strong>2. Sumber Daya Manusia (SDM):</strong> Keterampilan dan jumlah tenaga kerja.</li>
+                        <li class="border p-3 rounded-lg"><strong>3. Modal:</strong> Uang, mesin, dan sarana infrastruktur.</li>
+                        <li class="border p-3 rounded-lg"><strong>4. Kewirausahaan:</strong> Kemampuan inovasi & manajemen usaha.</li>
+                    </ul>
+                `
+            },
+            5: {
+                title: "Modul 5: Pelaku Kegiatan Ekonomi",
+                body: `
+                    <p class="text-xs text-slate-600 mb-3">Empat Pelaku Ekonomi Utama dalam Perekonomian:</p>
+                    <ol class="list-decimal list-inside text-xs text-slate-700 space-y-1.5">
+                        <li><strong>Rumah Tangga Konsumen (RTK):</strong> Pemilik faktor produksi & pengguna barang/jasa.</li>
+                        <li><strong>Rumah Tangga Produsen (RTP):</strong> Penghasil barang dan jasa.</li>
+                        <li><strong>Pemerintah:</strong> Pengatur, pengawas, serta penyedia fasilitas umum.</li>
+                        <li><strong>Masyarakat Luar Negeri:</strong> Pelaku kegiatan Ekspor dan Impor.</li>
+                    </ol>
+                `
+            },
+            6: {
+                title: "Modul 6: Keragaman Kegiatan Ekonomi di Indonesia",
+                body: `
+                    <div class="grid md:grid-cols-2 gap-3 text-xs">
+                        <div class="bg-emerald-50 p-3 rounded-lg"><strong>Pesisir & Laut:</strong> Nelayan, budidaya rumput laut, dan pariwisata bahari.</div>
+                        <div class="bg-amber-50 p-3 rounded-lg"><strong>Dataran Tinggi:</strong> Perkebunan teh, kopi, dan sayuran hortikultura.</div>
+                    </div>
+                `
+            },
+            7: {
+                title: "Modul 7: Pentingnya Kegiatan Ekonomi Bagi Masyarakat",
+                body: `
+                    <p class="text-xs text-slate-600 leading-relaxed">Tanpa kegiatan ekonomi, roda kehidupan masyarakat akan berhenti. Kegiatan ekonomi menciptakan lapangan kerja, mengurangi kemiskinan, serta mendorong pembangunan nasional.</p>
+                `
+            },
+            8: {
+                title: "Modul 8: Sikap Positif dalam Kegiatan Ekonomi",
+                body: `
+                    <div class="space-y-2 text-xs">
+                        <p class="text-green-700 font-bold"><i class="fa-solid fa-check-circle"></i> Sikap Terpuji:</p>
+                        <p class="text-slate-600">Jujur menimbang barang, hemat dalam membelanjakan uang, bekerja keras, dan ramah lingkungan.</p>
+                    </div>
+                `
+            }
+        };
+
+        function showModule(modNum, btnEl) {
+            document.querySelectorAll('.mod-tab-btn').forEach(b => {
+                if (b && b.classList) {
+                    b.classList.remove('bg-blue-600', 'text-white');
+                    b.classList.add('bg-white', 'text-slate-700');
+                }
+            });
+            
+            const targetBtn = btnEl || (typeof event !== 'undefined' && event && event.currentTarget) || document.querySelectorAll('.mod-tab-btn')[modNum - 1];
+            if (targetBtn && targetBtn.classList) {
+                targetBtn.classList.remove('bg-white', 'text-slate-700');
+                targetBtn.classList.add('bg-blue-600', 'text-white');
+            }
+
+            const mod = modulesData[modNum];
+            if (mod) {
+                document.getElementById('module-content-container').innerHTML = `
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">${mod.title}</h3>
+                    ${mod.body}
+                `;
+            }
+        }
+
+        function initModuleContent() {
+            showModule(1);
+        }
+
+        /* ===================================================
+           4. AKTIVITAS INTERAKTIF LOGIC
+        =================================================== */
+        const dragItemsData = [
+            { id: "d1", name: "Petani Menanam Padi", cat: "produksi" },
+            { id: "d2", name: "Kurir Mengantar Paket", cat: "distribusi" },
+            { id: "d3", name: "Siswa Membeli Es Krim", cat: "konsumsi" },
+            { id: "d4", name: "Pabrik Membuat Sepatu", cat: "produksi" },
+            { id: "d5", name: "Sopir Truk Mengangkut Semen", cat: "distribusi" }
+        ];
+
+        function initDragActivity() {
+            const container = document.getElementById('drag-items');
+            container.innerHTML = dragItemsData.map(item => `
+                <div id="${item.id}" onclick="quickMoveItem('${item.id}')" class="drag-item bg-white border border-slate-300 shadow-sm px-3 py-1.5 rounded-lg text-xs font-medium cursor-pointer hover:border-blue-500">
+                    ${item.name}
+                </div>
+            `).join('');
+        }
+
+        function quickMoveItem(itemId) {
+            const el = document.getElementById(itemId);
+            const parent = el.parentElement.id;
+            if(parent === 'drag-items') {
+                document.querySelector('#drop-produksi .drop-zone').appendChild(el);
+            } else if(el.parentElement.closest('#drop-produksi')) {
+                document.querySelector('#drop-distribusi .drop-zone').appendChild(el);
+            } else if(el.parentElement.closest('#drop-distribusi')) {
+                document.querySelector('#drop-konsumsi .drop-zone').appendChild(el);
+            } else {
+                document.getElementById('drag-items').appendChild(el);
+            }
+        }
+
+        function checkDragActivity() {
+            let correct = 0;
+            dragItemsData.forEach(item => {
+                const el = document.getElementById(item.id);
+                const zone = el.parentElement.getAttribute('data-category');
+                if(zone === item.cat) correct++;
+            });
+            alert(`Kamu berhasil menempatkan ${correct} dari ${dragItemsData.length} kegiatan dengan benar!`);
+        }
+
+        function resetDragActivity() {
+            initDragActivity();
+            document.querySelectorAll('.drop-zone').forEach(z => z.innerHTML = '');
+        }
+
+        function switchAktivitas(actType) {
+            document.querySelectorAll('.act-box').forEach(b => b.classList.add('hidden'));
+            document.getElementById('act-container-' + actType).classList.remove('hidden');
+        }
+
+        function initUrutanActivity() {
+            const container = document.getElementById('urut-list');
+            container.innerHTML = `
+                <div class="border p-2.5 rounded-lg text-xs bg-slate-50 flex items-center gap-2">
+                    <span class="font-bold">Langkah 1:</span> Mendistribusikan lemari kayu ke toko mebel kota.
+                </div>
+                <div class="border p-2.5 rounded-lg text-xs bg-slate-50 flex items-center gap-2">
+                    <span class="font-bold">Langkah 2:</span> Tukang kayu mengolah kayu gelondongan jadi lemari.
+                </div>
+            `;
+        }
+
+        function checkUrutan() {
+            alert("Urutan tepat: 1. Tukang kayu mengolah kayu -> 2. Mendistribusikan lemari -> 3. Konsumen membeli lemari.");
+        }
+
+        // Simulasi Kasir
+        let cart = [];
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const list = document.getElementById('cart-list');
+            const totalEl = document.getElementById('cart-total');
+            const changeEl = document.getElementById('cart-change');
+            if(cart.length === 0) {
+                list.innerHTML = '<li class="italic text-slate-400">Keranjang masih kosong.</li>';
+                totalEl.innerText = "Rp 0";
+                changeEl.innerText = "Rp 50.000";
+                return;
+            }
+            let tot = 0;
+            list.innerHTML = cart.map(i => {
+                tot += i.price;
+                return `<li class="flex justify-between"><span>${i.name}</span><span>Rp ${i.price.toLocaleString()}</span></li>`;
+            }).join('');
+            totalEl.innerText = "Rp " + tot.toLocaleString();
+            changeEl.innerText = "Rp " + (50000 - tot).toLocaleString();
+        }
+
+        function checkoutCart() {
+            if(cart.length === 0) return alert("Keranjang kosong!");
+            alert("Transaksi Berhasil! Kamu telah mempraktikkan kegiatan Konsumsi secara bijak.");
+            cart = [];
+            updateCartUI();
+        }
+
+        /* ===================================================
+           5. GAME EDUKATIF: PETUALANGAN EKONOMI
+        =================================================== */
+        const gameLevels = [
+            { lvl: 1, title: "Pulau Sumatra", mission: "Tujuan Kegiatan Ekonomi", q: "Mengapa petani kelapa sawit di Sumatra bekerja keras memanen kelapa sawit?", options: ["Untuk dibuang ke laut", "Untuk memperoleh pendapatan & memenuhi kebutuhan", "Hanya mengisi waktu luang"], ans: 1 },
+            { lvl: 2, title: "Pulau Jawa", mission: "Membedakan Produksi & Konsumsi", q: "Pabrik tekstil di Bandung yang menjahit baju termasuk kegiatan...?", options: ["Produksi", "Konsumsi", "Distribusi"], ans: 0 },
+            { lvl: 3, title: "Pulau Kalimantan", mission: "Menyambung Rantai Ekonomi", q: "Kayu dari hutan Kalimantan diangkut kapal menuju pelabuhan Jawa. Kegiatan ini adalah...?", options: ["Konsumsi", "Distribusi", "Produksi"], ans: 1 },
+            { lvl: 4, title: "Pulau Sulawesi", mission: "Mengenal Pelaku Ekonomi", q: "Pemerintah membangun jalan tol untuk memperlancar barang. Peran pemerintah di sini adalah...?", options: ["Produsen makanan", "Pengatur & Penyedia Fasilitas Publik", "Konsumen pribadi"], ans: 1 },
+            { lvl: 5, title: "Pulau Bali & Nusa Tenggara", mission: "Ekonomi Pariwisata", q: "Wisatawan asing membeli kerajinan ukiran Bali. Kegiatan ini bernilai...?", options: ["Ekspor / Jasa Pariwisata", "Impor", "Konsumsi Pasif"], ans: 0 },
+            { lvl: 6, title: "Pulau Papua", mission: "Sikap Ekonomi Bijak", q: "Pasar Mama-Mama Papua menjual sagu segar. Sikap konsumen yang baik adalah...?", options: ["Menawar harga dengan kejam", "Membeli dengan harga adil & menghargai hasil karya", "Merusak dagangan"], ans: 1 }
+        ];
+
+        function initGame() {
+            const selector = document.getElementById('game-level-selector');
+            selector.innerHTML = gameLevels.map(g => `
+                <button onclick="loadGameLevel(${g.lvl})" class="p-2.5 border rounded-xl text-center hover:bg-amber-50 transition">
+                    <div class="text-xs font-bold text-slate-700">Lvl ${g.lvl}</div>
+                    <div class="text-[10px] text-slate-500 truncate">${g.title}</div>
+                </button>
+            `).join('');
+            loadGameLevel(1);
+        }
+
+        function loadGameLevel(lvl) {
+            const g = gameLevels.find(x => x.lvl === lvl);
+            document.getElementById('game-play-area').innerHTML = `
+                <div>
+                    <span class="bg-amber-500 text-slate-900 font-bold px-2 py-0.5 rounded text-[10px]">LEVEL ${g.lvl}: ${g.title}</span>
+                    <h3 class="text-lg font-bold mt-2">${g.mission}</h3>
+                    <p class="text-xs text-slate-300 mt-2">${g.q}</p>
+                    <div class="space-y-2 mt-4">
+                        ${g.options.map((opt, i) => `
+                            <button onclick="answerGame(${g.lvl}, ${i}, ${g.ans})" class="w-full text-left p-2.5 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-medium transition">${opt}</button>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function answerGame(lvl, chosen, correct) {
+            if(chosen === correct) {
+                studentData.gamePoints += 50;
+                studentData.gameLevel = Math.max(studentData.gameLevel, lvl + 1);
+                saveData();
+                alert(" Benar! Kamu mendapatkan +50 Poin.");
+                if(lvl < 6) loadGameLevel(lvl + 1);
+            } else {
+                alert("Kurang tepat. Coba lagi!");
+            }
+            document.getElementById('game-points-display').innerText = studentData.gamePoints;
+        }
+
+        /* ===================================================
+           6. LATIHAN SOAL & 7. EVALUASI AKHIR (20 SOAL)
+        =================================================== */
+        const evaluasiQuestions = [
+            { q: "1. Seluruh kegiatan yang dilakukan manusia untuk memenuhi kebutuhan hidupnya disebut...", opts: ["Kegiatan Sosial", "Kegiatan Ekonomi", "Kegiatan Politik", "Kegiatan Budaya"], ans: 1 },
+            { q: "2. Pihak yang melakukan kegiatan menciptakan atau menambah nilai guna barang/jasa adalah...", opts: ["Distributor", "Konsumen", "Produsen", "Pemerintah"], ans: 2 },
+            { q: "3. Ibu memasak nasi goreng untuk sarapan pagi seluruh anggota keluarga. Kegiatan Ibu termasuk...", opts: ["Produksi", "Distribusi", "Konsumsi", "Investasi"], ans: 0 },
+            { q: "4. Kurir paket mengantarkan pesanan barang toko online dari Jakarta ke Semarang. Kegiatan ini merupakan contoh...", opts: ["Produksi", "Distribusi", "Konsumsi", "Ekspor"], ans: 1 },
+            { q: "5. Manakah yang merupakan contoh kegiatan konsumsi barang di lingkungan sekolah?", opts: ["Koperasi sekolah membeli buku dari pabrik", "Siswa membeli bakso di kantin sekolah", "Guru mengajar di kelas", "Petugas kebersihan menyapu halaman"], ans: 1 },
+            { q: "6. Salah satu tujuan utama produsen melakukan kegiatan produksi adalah...", opts: ["Menghabiskan tabungan", "Memperoleh keuntungan / laba", "Menimbun barang", "Mengurangi tenaga kerja"], ans: 1 },
+            { q: "7. Rantai urutan kegiatan ekonomi yang benar adalah...", opts: ["Konsumsi -> Produksi -> Distribusi", "Produksi -> Distribusi -> Konsumsi", "Distribusi -> Konsumsi -> Produksi", "Produksi -> Konsumsi -> Distribusi"], ans: 1 },
+            { q: "8. Daerah pesisir pantai sangat cocok mengembangkan kegiatan ekonomi di bidang...", opts: ["Perkebunan teh", "Perikanan laut dan pariwisata bahari", "Pabrik tekstil", "Pertanian padi sawah"], ans: 1 },
+            { q: "9. Yang BUKAN merupakan faktor produksi adalah...", opts: ["Sumber Daya Alam", "Tenaga Kerja", "Modal", "Jumlah Konsumen"], ans: 3 },
+            { q: "10. Rumah Tangga Konsumen (RTK) menyerahkan faktor produksi berupa tenaga kerja kepada perusahaan dan memperoleh imbalan berupa...", opts: ["Pajak", "Upah / Gaji", "Subsidi", "Barang bekas"], ans: 1 },
+            { q: "11. Peran utama Pemerintah dalam perekonomian Indonesia adalah...", opts: ["Menjual barang impor murah", "Mengatur, mengawasi, dan menyediakan fasilitas publik", "Menghabiskan anggaran", "Memonopoli pasar swasta"], ans: 1 },
+            { q: "12. Kegiatan menjual barang buatan dalam negeri ke luar negeri dinamakan...", opts: ["Impor", "Ekspor", "Barter", "Grosir"], ans: 1 },
+            { q: "13. Penggunaan teknologi mesin otomatis dalam proses produksi bertujuan untuk...", opts: ["Meningkatkan efisiensi dan jumlah produksi", "Merusak barang", "Memperlambat proses kerja", "Menambah biaya usaha"], ans: 0 },
+            { q: "14. Sikap hemat yang benar dalam kegiatan konsumsi sehari-hari ditunjukkan oleh...", opts: ["Membeli semua barang yang diskon", "Membeli barang sesuai prioritas kebutuhan", "Tidak mau membeli makanan", "Selalu meminjam uang teman"], ans: 1 },
+            { q: "15. Apa dampak negatif jika produsen tidak jujur dalam menimbang barang dagangannya?", opts: ["Mendapat kepercayaan pembeli", "Merugikan konsumen dan merusak reputasi usaha", "Barang cepat laku", "Usaha makin berkah"], ans: 1 },
+            { q: "16. Mengapa infrastruktur jalan raya yang baik sangat penting bagi kegiatan ekonomi?", opts: ["Agar jalanan ramai", "Mempercepat dan mempermudah distribusi barang", "Menambah harga barang", "Mengurangi kendaraan"], ans: 1 },
+            { q: "17. Contoh kegiatan ekonomi yang memanfaatkan ekonomi digital saat ini adalah...", opts: ["Barter hasil buruan di hutan", "Berjualan keliling desa", "Berjualan melalui platform e-commerce / toko online", "Membeli barang dengan emas"], ans: 2 },
+            { q: "18. Yang dimaksud dengan nilai guna suatu barang adalah...", opts: ["Harga barang di pasar", "Kemampuan barang untuk memenuhi kebutuhan manusia", "Berat bersih barang", "Bahan pembuat barang"], ans: 1 },
+            { q: "19. Pelaku ekonomi masyarakat luar negeri berperan dalam...", opts: ["Membayar pajak ke pemerintah daerah", "Perdagangan internasional (ekspor-impor)", "Mengatur UU ekonomi nasional", "Menjadi RTK lokal"], ans: 1 },
+            { q: "20. Menghargai pekerjaan orang lain, seperti tidak mencemooh profesi petugas kebersihan, merupakan contoh sikap...", opts: ["Ekonomi Terpuji & Adil", "Boros", "Egois", "Konsumtif"], ans: 0 }
+        ];
+
+        let evalAnswers = Array(20).fill(null);
+        let currentEvalIndex = 0;
+
+        function initLatihanSoal() {
+            const container = document.getElementById('latihan-questions-container');
+            container.innerHTML = evaluasiQuestions.slice(0, 5).map((q, idx) => `
+                <div class="border rounded-xl p-4 bg-slate-50">
+                    <p class="font-bold text-xs text-slate-800 mb-3">${q.q}</p>
+                    <div class="space-y-2">
+                        ${q.opts.map((opt, oIdx) => `
+                            <button onclick="checkLatihanDirect(this, ${oIdx}, ${q.ans})" class="w-full text-left p-2 border rounded-lg text-xs bg-white hover:bg-blue-50">${opt}</button>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function checkLatihanDirect(btn, chosen, correct) {
+            if(chosen === correct) {
+                btn.classList.add('bg-green-100', 'border-green-500', 'text-green-800');
+            } else {
+                btn.classList.add('bg-red-100', 'border-red-500', 'text-red-800');
+            }
+        }
+
+        function resetLatihan() {
+            initLatihanSoal();
+        }
+
+        function initEvaluasi() {
+            renderEvalGrid();
+            showEvalQuestion(0);
+        }
+
+        function renderEvalGrid() {
+            const grid = document.getElementById('eval-number-grid');
+            grid.innerHTML = evaluasiQuestions.map((_, i) => `
+                <button onclick="showEvalQuestion(${i})" id="eval-num-${i}" class="p-2 text-xs font-bold border rounded-lg bg-white hover:bg-slate-100 text-slate-700">${i + 1}</button>
+            `).join('');
+        }
+
+        function showEvalQuestion(idx) {
+            currentEvalIndex = idx;
+            const q = evaluasiQuestions[idx];
+            document.getElementById('eval-question-box').innerHTML = `
+                <p class="font-bold text-sm text-slate-800 mb-4">${q.q}</p>
+                <div class="space-y-2">
+                    ${q.opts.map((opt, oIdx) => `
+                        <label class="flex items-center gap-3 p-3 border rounded-xl cursor-pointer hover:bg-blue-50 ${evalAnswers[idx] === oIdx ? 'bg-blue-100 border-blue-500' : ''}">
+                            <input type="radio" name="eval-opt" onchange="selectEvalAnswer(${idx}, ${oIdx})" ${evalAnswers[idx] === oIdx ? 'checked' : ''} class="text-blue-600">
+                            <span class="text-xs text-slate-700">${opt}</span>
+                        </label>
+                    `).join('')}
+                </div>
+            `;
+
+            // UI Adjustments
+            document.getElementById('btn-eval-prev').style.visibility = idx === 0 ? 'hidden' : 'visible';
+            if(idx === 19) {
+                document.getElementById('btn-eval-next').classList.add('hidden');
+                document.getElementById('btn-eval-finish').classList.remove('hidden');
+            } else {
+                document.getElementById('btn-eval-next').classList.remove('hidden');
+                document.getElementById('btn-eval-finish').classList.add('hidden');
+            }
+        }
+
+        function selectEvalAnswer(qIdx, optIdx) {
+            evalAnswers[qIdx] = optIdx;
+            const btn = document.getElementById(`eval-num-${qIdx}`);
+            btn.classList.add('bg-blue-600', 'text-white');
+            
+            const answeredCount = evalAnswers.filter(a => a !== null).length;
+            document.getElementById('eval-progress-text').innerText = `${answeredCount} / 20 Terjawab`;
+        }
+
+        function navEvalQuestion(dir) {
+            showEvalQuestion(currentEvalIndex + dir);
+        }
+
+        function submitEvaluasi() {
+            let correct = 0;
+            evalAnswers.forEach((ans, i) => {
+                if(ans === evaluasiQuestions[i].ans) correct++;
+            });
+
+            const score = (correct / 20) * 100;
+            studentData.evalScore = score;
+
+            let cat = "Perlu Belajar Kembali";
+            if(score >= 90) cat = "Sangat Baik";
+            else if(score >= 80) cat = "Baik";
+            else if(score >= 70) cat = "Cukup";
+
+            studentData.evalCategory = cat;
+            studentData.progress = 100;
+            saveData();
+
+            document.getElementById('eval-question-box').classList.add('hidden');
+            document.getElementById('eval-result-card').classList.remove('hidden');
+            document.getElementById('result-score-val').innerText = score;
+            document.getElementById('result-category-badge').innerText = cat;
+            document.getElementById('result-feedback-text').innerText = `Kamu menjawab ${correct} dari 20 soal dengan benar.`;
+        }
+
+        /* ===================================================
+           8. REFLEKSI
+        =================================================== */
+        function selectReflectLevel(lvl) {
+            studentData.reflectLevel = lvl;
+            document.querySelectorAll('.ref-lvl-btn').forEach(b => b.classList.remove('border-blue-600', 'bg-blue-50'));
+            if (typeof event !== 'undefined' && event && event.currentTarget) {
+                event.currentTarget.classList.add('border-blue-600', 'bg-blue-50');
+            }
+        }
+
+        function saveRefleksi() {
+            const q1 = document.getElementById('ref-q1').value;
+            const q2 = document.getElementById('ref-q2').value;
+            studentData.reflectText = `[${studentData.reflectLevel}] Q1: ${q1} | Q2: ${q2}`;
+            saveData();
+            alert("Terima kasih! Hasil refleksi belajarmu telah tersimpan.");
+        }
+
+        /* ===================================================
+           9. PANEL GURU REKAPITULASI
+        =================================================== */
+        function updateGuruRekap() {
+            const tbody = document.getElementById('guru-rekap-table-body');
+            tbody.innerHTML = `
+                <tr>
+                    <td class="p-3 font-bold">${studentData.name}</td>
+                    <td class="p-3">${studentData.class}</td>
+                    <td class="p-3">Level ${studentData.gameLevel}</td>
+                    <td class="p-3">${studentData.gamePoints} Pts</td>
+                    <td class="p-3 font-bold text-blue-600">${studentData.evalScore !== null ? studentData.evalScore : 'Belum Ujian'}</td>
+                    <td class="p-3"><span class="px-2 py-0.5 rounded text-[10px] bg-slate-100 font-bold">${studentData.evalCategory}</span></td>
+                    <td class="p-3 text-[10px] text-slate-500 max-w-xs truncate">${studentData.reflectText || '-'}</td>
+                </tr>
+            `;
+        }
+
+        function exportDataSiswa() {
+            const csvContent = "data:text/csv;charset=utf-8," 
+                + "Nama,Kelas,LevelGame,PoinGame,NilaiEvaluasi,Predikat,Refleksi\n"
+                + `"${studentData.name}","${studentData.class}","${studentData.gameLevel}","${studentData.gamePoints}","${studentData.evalScore || 0}","${studentData.evalCategory}","${studentData.reflectText || ''}"`;
+            
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `Rekap_Nilai_${studentData.name}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function resetAllProgress() {
+            if(confirm("Apakah Anda yakin ingin mereset seluruh progres belajar siswa ini?")) {
+                localStorage.removeItem("ips_kegiatan_ekonomi_data");
+                location.reload();
+            }
+        }
+    </script>
+</body>
+</html>
